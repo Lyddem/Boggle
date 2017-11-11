@@ -1,0 +1,75 @@
+body {
+  background: #F57921;
+}
+
+tbody, th, td {
+  border: 1px solid orange;
+  background-color: white;
+}
+
+span {
+  padding: 5px;
+}
+
+.btn {
+  height: 40px;
+  width: 50px;
+  background-color: white
+  margin 2px;
+  border: 1px solid black;
+  background-color: #FFFF;
+  border-radius: 5px;
+  align: center;
+  padding: 7px;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  text-align: center;
+  padding: 3px;
+}
+
+#container {
+  margin: auto;
+  float: left;
+}
+
+#title {
+  float: center;
+  max-width: 200px;
+}
+
+#submit {
+  text-align: right;
+}
+
+#total {
+  background-color: #A4CCED;
+}
+
+#scoreboard {
+  background-color: #FFD422;
+  padding: 2px;
+}
+
+#cw-submit {
+  margin: auto;
+}
+
+#submit {
+  float: right;
+}
+
+#table {
+  background-color: yellow;
+}
+
+#board {
+ margin: auto;
+ height: 300px;
+ width: 300px;
+ border: 3px solid #FFCA08;
+ padding: 5px;
+ background: #398BD4;
+}
