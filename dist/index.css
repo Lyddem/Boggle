@@ -5,19 +5,22 @@ body {
 tbody, th, td {
   border: 1px solid orange;
   background-color: white;
+  padding: 6px;
+}
+
+table {
+  background-color: #FFCD00;
 }
 
 .btn {
   height: 43px;
   width: 45px;
   margin: 3px;
-  float: center;
   border: 1px solid black;
   background-color: #FFF;
-  border-radius: 6px;
+  border-radius: 8px;
   box-shadow: 2px 2px 2px 1px rgba(0, 0, 0, 0.2);
-  align: center;
-  padding: 7px;
+  padding: 8px;
 }
 
 .row {
@@ -32,17 +35,23 @@ tbody, th, td {
   float: left;
 }
 
+#container img {
+  display: block;
+  margin: auto;
+}
+
 #title {
   float: center;
   max-width: 200px;
 }
 
-#submit {
-  text-align: right;
-}
-
-#total {
-  background-color: #A4CCED;
+#board {
+ margin: auto;
+ height: 400px;
+ width: 375px;
+ border: 5px solid #FFCA08;
+ padding: 15px;
+ background: #398BD4;
 }
 
 #cw-submit {
@@ -53,11 +62,6 @@ tbody, th, td {
   float: right;
 }
 
-#board {
- margin: auto;
- height: 400px;
- width: 370px;
- border: 5px solid #FFCA08;
- padding: 5px;
- background: #398BD4;
+#scoreboard {
+  padding-bottom: 30px;
 }

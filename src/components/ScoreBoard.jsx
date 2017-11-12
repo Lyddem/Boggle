@@ -5,15 +5,37 @@ class ScoreBoard extends React.Component {
   constructor(props) {
     super(props)
 
+    this.calculateScore = this.calculateScore.bind(this);
+  }
+
+  calculateScore (word) {
+    if (word.length === 1 || word.length === 2) {
+      return 0;
+    }
+    if (word.length === 3 || word.length === 4) {
+      return 1;
+    }
+    if (word.length === 5) {
+      return 2;
+    }
+    if (word.length === 6) {
+      return 3;
+    }
+    if (word.length === 7) {
+      return 5;
+    }
+    if (word.length >= 8) {
+      return 11;
+    }
   }
 
   render() {
 
     {console.log('total', this.props.total )}
     return (
-      <div>
+      <div id="scoreboard">
         <table>
-          <tbody id="scoreboard">
+          <tbody>
             <tr>
               <th>Word</th>
               <th>Score</th>
@@ -23,14 +45,14 @@ class ScoreBoard extends React.Component {
                 return (
                   <tr>
                     <td>{word}</td>
-                    <td>{word.length}</td>
+                    <td>{this.calculateScore(word)}</td>
                   </tr>
                 )
               })
             }
             <tr>
-              <td id="total">Total</td>
-              <td id="total">{this.props.total}</td>
+              <td id="total"><strong>Total</strong></td>
+              <td id="total"><strong>{this.props.total}</strong></td>
             </tr>
           </tbody>
         </table>

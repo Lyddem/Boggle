@@ -6,10 +6,10 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      currentWord: 'tesest',
-      color: '#FFF',
       total: 0,
-      data: ['test3','test2','test1'],
+      color: '#FFF',
+      currentWord: 'test',
+      data: ['test123','test12','test1'],
       board1: [],
       board2: [],
       board3: [],
@@ -26,155 +26,159 @@ class App extends React.Component {
     this.submitWord = this.submitWord.bind(this);
   }
 
-componentWillMount() {
-    let letter1 = '';
-    let letter2 = '';
-    let letter3 = '';
-    let letter4 = '';
-    let letter5 = '';
+  componentWillMount() {
+      let letter1 = '';
+      let letter2 = '';
+      let letter3 = '';
+      let letter4 = '';
+      let letter5 = '';
 
-    this.state.row1.forEach(die => {
-      letter1 = die[Math.floor(Math.random() * 6)].toUpperCase();
-      if (letter1 === 'Q') {
-        this.state.board1.push("Qu")
-      } else {
-        this.state.board1.push(letter1);
-      }
-    })
-    this.state.row2.forEach(die => {
-      letter2 = die[Math.floor(Math.random() * 6)].toUpperCase();
-      if (letter2 === 'Q') {
-        this.state.board2.push("Qu")
-      } else {
-        this.state.board2.push(letter2);
-      }
-    })
-    this.state.row3.forEach(die => {
-      letter3 = die[Math.floor(Math.random() * 6)].toUpperCase();
-      if (letter3 === 'Q') {
-        this.state.board3.push("Qu")
-      } else {
-        this.state.board3.push(letter3);
-      }
-    })
-    this.state.row4.forEach(die => {
-      letter4 = die[Math.floor(Math.random() * 6)].toUpperCase();
-      if (letter4 === 'Q') {
-        this.state.board5.push("Qu")
-      } else {
-        this.state.board4.push(letter4);
-      }
-    })
-    this.state.row5.forEach(die => {
-      letter5 = die[Math.floor(Math.random() * 6)].toUpperCase();
-      if (letter5 === 'Q') {
-        this.state.board5.push("Qu")
-      } else {
-        this.state.board5.push(letter5);
-      }
-    })
+      this.state.row1.forEach(die => {
+        letter1 = die[Math.floor(Math.random() * 6)].toUpperCase();
+        if (letter1 === 'Q') {
+          this.state.board1.push("Qu")
+        } else {
+          this.state.board1.push(letter1);
+        }
+      })
+      this.state.row2.forEach(die => {
+        letter2 = die[Math.floor(Math.random() * 6)].toUpperCase();
+        if (letter2 === 'Q') {
+          this.state.board2.push("Qu")
+        } else {
+          this.state.board2.push(letter2);
+        }
+      })
+      this.state.row3.forEach(die => {
+        letter3 = die[Math.floor(Math.random() * 6)].toUpperCase();
+        if (letter3 === 'Q') {
+          this.state.board3.push("Qu")
+        } else {
+          this.state.board3.push(letter3);
+        }
+      })
+      this.state.row4.forEach(die => {
+        letter4 = die[Math.floor(Math.random() * 6)].toUpperCase();
+        if (letter4 === 'Q') {
+          this.state.board5.push("Qu")
+        } else {
+          this.state.board4.push(letter4);
+        }
+      })
+      this.state.row5.forEach(die => {
+        letter5 = die[Math.floor(Math.random() * 6)].toUpperCase();
+        if (letter5 === 'Q') {
+          this.state.board5.push("Qu")
+        } else {
+          this.state.board5.push(letter5);
+        }
+      })
+    }
+
+  clicked() {
+    //change background color
+    let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
+    this.setState({ color: newColor });
+    // add letter to currentWord
+    //if color is not white, subtract - deselect
   }
 
-clicked() {
-  //change background color
-  let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
-  this.setState({ color: newColor });
+  submitWord() {
 
-  // let letter = document.querySelector('.btn').innerHTML;
-  // add letter to currentWord
-}
+    function calculateScore (word) {
 
-submitWord() {
-  //add word to this.data
-  let word=this.state.currentWord;
-  this.state.data.push(word);
+    }
+    //add word to this.data
+    let word=this.state.currentWord;
+    this.state.data.push(word);
 
-  //check length and add points to this.total
-  if (word.length === 1 || word.length === 2) {
-    this.setState({ total: this.state.total += 0 });
+    //check length and add points to this.total
+    if (word.length === 1 || word.length === 2) {
+      this.setState({ total: this.state.total += 0 });
+    }
+    if (word.length === 3 || word.length === 4) {
+      this.setState({ total: this.state.total += 1 });
+    }
+    if (word.length === 5) {
+      this.setState({ total: this.state.total += 2 });
+    }
+    if (word.length === 6) {
+      this.setState({ total: this.state.total += 3 });
+    }
+    if (word.length === 7) {
+      this.setState({ total: this.state.total += 5 });
+    }
+    if (word.length >= 8) {
+      this.setState({ total: this.state.total += 11 });
+    }
+    //deselect(background color --> white)
+    this.setState({ color: '#FFF'})
   }
-  if (word.length === 3 || word.length === 4) {
-    this.setState({ total: this.state.total += 1 });
-  }
-  if (word.length === 5) {
-    this.setState({ total: this.state.total += 2 });
-  }
-  if (word.length === 6) {
-    this.setState({ total: this.state.total += 3 });
-  }
-  if (word.length === 7) {
-    this.setState({ total: this.state.total += 5 });
-  }
-  if (word.length >= 8) {
-    this.setState({ total: this.state.total += 11 });
-  }
-  //deselect(background color --> white)
-  this.setState({ color: '#FFF'})
-}
 
-render () {
-  return (
-    <div id="container">
-      <img id="title" src="http://qumani.com/qdserve/boggle-logo.png"/>
+  render () {
+    return (
+      <div id="container">
+        <img id="title" src="http://qumani.com/qdserve/boggle-logo.png"/>
 
-    {/* Board */}
-      <div id="board">
-        <div className="row">
-          {this.state.board1.map((letter, index) => {
+      {/* Board */}
+        <div id="board">
+          <div className="row">
+            {this.state.board1.map((letter, index) => {
+              return (
+                <div className="btn" onClick={() => this.clicked()} style={{background:this.state.color}}> {letter} </div>
+              )
+            })}
+          </div>
+          <div className="row">
+          {this.state.board5.map((letter, index) => {
             return (
-              <div className="btn" onClick={() => this.clicked()} style={{background:this.state.color}}> {letter} </div>
+              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
+                <span>{letter}</span>
+              </div>
             )
           })}
-        </div>
-        <div className="row">
-        {this.state.board5.map((letter, index) => {
-          return (
-            <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-              <span>{letter}</span>
-            </div>
-          )
-        })}
-        </div>
-        <div className="row">
-        {this.state.board3.map((letter, index) => {
-          return (
-            <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-              <span>{letter}</span>
-            </div>
-          )
-        })}
-        </div>
-        <div className="row">
-        {this.state.board4.map((letter, index) => {
-          return (
-            <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-              <span>{letter}</span>
-            </div>
-          )
-        })}
-        </div>
-        <div className="row">
-        {this.state.board5.map((letter, index) => {
-          return (
-            <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-              <span>{letter}</span>
-            </div>
-          )
-        })}
-        </div>
-      </div> &nbsp;
+          </div>
+          <div className="row">
+          {this.state.board3.map((letter, index) => {
+            return (
+              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
+                <span>{letter}</span>
+              </div>
+            )
+          })}
+          </div>
+          <div className="row">
+          {this.state.board4.map((letter, index) => {
+            return (
+              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
+                <span>{letter}</span>
+              </div>
+            )
+          })}
+          </div>
+          <div className="row">
+          {this.state.board5.map((letter, index) => {
+            return (
+              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
+                <span>{letter}</span>
+              </div>
+            )
+          })}
+          </div>
+        </div> &nbsp;
 
-       <div id="cw-submit">
-        <button type="button" id="submit" onClick={this.submitWord}> Submit Word </button>
-        <span><strong> Current Word: {this.state.currentWord} </strong></span>
-      </div><br /><br />
+      {/* Current Word & Submit */}
+         <div id="cw-submit">
+          <button type="button" id="submit" onClick={this.submitWord}> Submit Word </button>
+          <span><strong> Current Word: {this.state.currentWord} </strong></span>
+        </div><br /><br />
 
-    {/*scoreboard*/}
-     <ScoreBoard total={this.state.total} data={this.state.data} />
+      {/* Scoreboard */}
+        <ScoreBoard total={this.state.total} data={this.state.data} />
 
-    </div>
-  )
-}
+      </div>
+    )
+  }
 }
 
 export default App;
