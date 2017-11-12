@@ -11,6 +11,7 @@ tbody, th, td {
   height: 43px;
   width: 45px;
   margin: 3px;
+  float: center;
   border: 1px solid black;
   background-color: #FFF;
   border-radius: 6px;

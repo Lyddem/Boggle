@@ -1,5 +1,4 @@
 import React from 'react';
-import Board from './Board.jsx';
 import ScoreBoard from './ScoreBoard.jsx';
 
 class App extends React.Component {
@@ -7,14 +6,15 @@ class App extends React.Component {
     super(props)
 
     this.state = {
-      data: [],
+      currentWord: 'tesest',
+      color: '#FFF',
+      total: 0,
+      data: ['test3','test2','test1'],
       board1: [],
       board2: [],
       board3: [],
       board4: [],
       board5: [],
-      total: 0,
-      currentWord: '',
       row1: ["aaafrs","aaeeee","aafirs","adennn","aeeeem"],
       row2: ["aeegmu","aegmnn","afirsy","bjkqxz","ccenst"],
       row3: ["ceiilt","ceilpt", "ceipst","ddhnot","dhhlor"],
@@ -23,6 +23,7 @@ class App extends React.Component {
     }
 
     this.clicked = this.clicked.bind(this);
+    this.submitWord = this.submitWord.bind(this);
   }
 
 componentWillMount() {
@@ -76,14 +77,39 @@ componentWillMount() {
 
 clicked() {
   //change background color
-  let letter = document.querySelector('.btn span').innerHTML;
-  console.log('LETTER', letter)
-  //add letter to currentWord
-  this.setState({
-    currentWord: this.state.currentWord + letter
-  })
+  let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
+  this.setState({ color: newColor });
 
-  console.log('letter', letter)
+  // let letter = document.querySelector('.btn').innerHTML;
+  // add letter to currentWord
+}
+
+submitWord() {
+  //add word to this.data
+  let word=this.state.currentWord;
+  this.state.data.push(word);
+
+  //check length and add points to this.total
+  if (word.length === 1 || word.length === 2) {
+    this.setState({ total: this.state.total += 0 });
+  }
+  if (word.length === 3 || word.length === 4) {
+    this.setState({ total: this.state.total += 1 });
+  }
+  if (word.length === 5) {
+    this.setState({ total: this.state.total += 2 });
+  }
+  if (word.length === 6) {
+    this.setState({ total: this.state.total += 3 });
+  }
+  if (word.length === 7) {
+    this.setState({ total: this.state.total += 5 });
+  }
+  if (word.length >= 8) {
+    this.setState({ total: this.state.total += 11 });
+  }
+  //deselect(background color --> white)
+  this.setState({ color: '#FFF'})
 }
 
 render () {
@@ -93,16 +119,14 @@ render () {
 
     {/* Board */}
       <div id="board">
-        <div class="row">
+        <div className="row">
           {this.state.board1.map((letter, index) => {
             return (
-              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-                <span> {letter} </span>
-              </div>
+              <div className="btn" onClick={() => this.clicked()} style={{background:this.state.color}}> {letter} </div>
             )
           })}
         </div>
-        <div class="row">
+        <div className="row">
         {this.state.board5.map((letter, index) => {
           return (
             <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
@@ -111,7 +135,7 @@ render () {
           )
         })}
         </div>
-        <div class="row">
+        <div className="row">
         {this.state.board3.map((letter, index) => {
           return (
             <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
@@ -120,7 +144,7 @@ render () {
           )
         })}
         </div>
-        <div class="row">
+        <div className="row">
         {this.state.board4.map((letter, index) => {
           return (
             <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
@@ -129,7 +153,7 @@ render () {
           )
         })}
         </div>
-        <div class="row">
+        <div className="row">
         {this.state.board5.map((letter, index) => {
           return (
             <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
@@ -141,11 +165,12 @@ render () {
       </div> &nbsp;
 
        <div id="cw-submit">
-        <button type="button" id="submit"> Submit Word </button>
+        <button type="button" id="submit" onClick={this.submitWord}> Submit Word </button>
         <span><strong> Current Word: {this.state.currentWord} </strong></span>
       </div><br /><br />
 
-      <ScoreBoard />
+    {/*scoreboard*/}
+     <ScoreBoard total={this.state.total} data={this.state.data} />
 
     </div>
   )
