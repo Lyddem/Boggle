@@ -31,7 +31,7 @@ class ScoreBoard extends React.Component {
 
   render() {
 
-    {console.log('total', this.props.total )}
+    // {console.log('total', this.props.total )}
     return (
       <div id="scoreboard">
         <table>

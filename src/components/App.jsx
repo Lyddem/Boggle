@@ -8,9 +8,10 @@ class App extends React.Component {
     this.state = {
       total: 0,
       color: '#FFF',
-      currentWord: 'test',
-      urrenWord: [],
-      data: ['test123','test12','test1'],
+      currentWord: '',
+      // currenWord: [],
+      color_white: true,
+      data: [],
       board1: [],
       board2: [],
       board3: [],
@@ -77,12 +78,15 @@ class App extends React.Component {
     }
 
   clicked(event) {
-    console.log('EVENT', event.target.innerText);
+    // console.log('Text', event.target.innerText);
+    let letter = event.target.innerText;
     event.target.style.backgroundColor = "#ACCEEC";
-     //change background color
+    //change background color
     let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
     this.setState({ color: newColor });
     // add letter to currentWord
+    this.setState({currentWord: this.state.currentWord + letter})
+    console.log('currentWord', this.state.currentWord);
     //if color is not white, subtract - deselect
   }
 
@@ -115,7 +119,7 @@ class App extends React.Component {
       this.setState({ total: this.state.total += 11 });
     }
     //deselect(background color --> white)
-    this.setState({ color: '#FFF'})
+    this.setState({ color: '#FFF', currentWord: '' })
   }
 
   render () {
@@ -134,9 +138,9 @@ class App extends React.Component {
             })}
           </div>
           <div className="row">
-          {this.state.board5.map((letter, index) => {
+          {this.state.board2.map((letter, index) => {
             return (
-              <div className="btn" onClick={() => this.clicked(e)} style={{background:this.state.color}}> {letter}
+              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -144,8 +148,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board3.map((letter, index) => {
             return (
-              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-                <span>{letter}</span>
+              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -153,8 +156,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board4.map((letter, index) => {
             return (
-              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-                <span>{letter}</span>
+              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -162,12 +164,12 @@ class App extends React.Component {
           <div className="row">
           {this.state.board5.map((letter, index) => {
             return (
-              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-                <span>{letter}</span>
+              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
           </div>
+
         </div> &nbsp;
 
       {/* Current Word & Submit */}
