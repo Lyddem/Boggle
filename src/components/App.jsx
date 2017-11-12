@@ -9,6 +9,7 @@ class App extends React.Component {
       total: 0,
       color: '#FFF',
       currentWord: 'test',
+      urrenWord: [],
       data: ['test123','test12','test1'],
       board1: [],
       board2: [],
@@ -75,8 +76,10 @@ class App extends React.Component {
       })
     }
 
-  clicked() {
-    //change background color
+  clicked(event) {
+    console.log('EVENT', event.target.innerText);
+    event.target.style.backgroundColor = "#ACCEEC";
+     //change background color
     let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
     this.setState({ color: newColor });
     // add letter to currentWord
@@ -125,15 +128,15 @@ class App extends React.Component {
           <div className="row">
             {this.state.board1.map((letter, index) => {
               return (
-                <div className="btn" onClick={() => this.clicked()} style={{background:this.state.color}}> {letter} </div>
+                <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+                </div>
               )
             })}
           </div>
           <div className="row">
           {this.state.board5.map((letter, index) => {
             return (
-              <div className="btn" value={letter} onClick={() => this.clicked({letter})}>
-                <span>{letter}</span>
+              <div className="btn" onClick={() => this.clicked(e)} style={{background:this.state.color}}> {letter}
               </div>
             )
           })}
