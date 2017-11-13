@@ -84,7 +84,7 @@ class App extends React.Component {
     //if color is blue, remove letter
       if(currentColor === "#ACCEEC"){
         let currentWord = this.state.currentWord;
-        let index= currentWord.indexOf(letter);
+        let index= currentWord.lastIndexOf(letter);
         currentWord.splice(index);
         this.setState({ currentWord: currentWord});
       }
