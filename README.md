@@ -1,7 +1,9 @@
 # Boggle
-React Boggle Game 
+React Boggle Game
 
-##Setup
+>##Setup
+Install npm <br /><br />
+> npm install <br />
 > npm run build <br />
 > npm start <br />
-> run in browser localhost:3000
+> run in browser! localhost:3000
