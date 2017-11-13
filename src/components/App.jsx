@@ -9,7 +9,6 @@ class App extends React.Component {
       total: 0,
       color: '#FFF',
       currentWord: '',
-      // currenWord: [],
       color_white: true,
       data: [],
       board1: [],
@@ -78,28 +77,23 @@ class App extends React.Component {
     }
 
   clicked(event) {
-    // console.log('Text', event.target.innerText);
-    let letter = event.target.innerText;
-    event.target.style.backgroundColor = "#ACCEEC";
     //change background color
     let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
     this.setState({ color: newColor });
-    // add letter to currentWord
-    this.setState({currentWord: this.state.currentWord + letter})
-    console.log('currentWord', this.state.currentWord);
-    //if color is not white, subtract - deselect
+    event.target.style.backgroundColor = newColor;
+
+    // add letter to state.currentWord
+    let letter = event.target.innerText;
+    this.setState({ currentWord: this.state.currentWord + letter })
   }
 
   submitWord() {
 
-    function calculateScore (word) {
-
-    }
-    //add word to this.data
+    //add word to state.data
     let word=this.state.currentWord;
     this.state.data.push(word);
 
-    //check length and add points to this.total
+    //check length and add points to state.total
     if (word.length === 1 || word.length === 2) {
       this.setState({ total: this.state.total += 0 });
     }
@@ -130,7 +124,9 @@ class App extends React.Component {
       {/* Board */}
         <div id="board">
           <div className="row">
-            {this.state.board1.map((letter, index) => {
+            {
+
+              this.state.board1.map((letter, index) => {
               return (
                 <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
                 </div>
