@@ -7,8 +7,8 @@ class App extends React.Component {
 
     this.state = {
       total: 0,
-      currentWord: [],
       data: [],
+      currentWord: [],
       board1: [],
       board2: [],
       board3: [],
@@ -95,8 +95,7 @@ class App extends React.Component {
     event.target.setAttribute('data-color', newColor);
   }
 
-  submitWord(event) {
-
+  submitWord() {
     //add word to state.data
     let word=this.state.currentWord;
     this.state.data.push(word);
@@ -123,7 +122,9 @@ class App extends React.Component {
     //clear selection
       let buttons = document.querySelectorAll('.btn');
       buttons.forEach(el => {
-        el.setAttribute('style', 'background-color: rgb(255,255,255)')
+        el.setAttribute('style', 'background-color: rgb(255,255,255)');
+        el.setAttribute('data-color', '#FFF');
+
         console.log(el.target);
       })
     //clear currentWord
