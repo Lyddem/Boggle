@@ -7,9 +7,7 @@ class App extends React.Component {
 
     this.state = {
       total: 0,
-      color: '#FFF',
       currentWord: '',
-      color_white: true,
       data: [],
       board1: [],
       board2: [],
@@ -77,17 +75,21 @@ class App extends React.Component {
     }
 
   clicked(event) {
-    //change background color
-    let newColor= this.state.color === "#FFF" ? "#ACCEEC" : "#FFF";
-    this.setState({ color: newColor });
+    //get current color
+    let currentColor = event.target.attributes['data-color'].value;
+    //new color will be opposite of currentColor
+    let newColor = currentColor === '#FFF' ? '#ACCEEC' : '#FFF';
+    //set bg color of div
     event.target.style.backgroundColor = newColor;
+    //reset div's attribute to be the new color
+    event.target.setAttribute('data-color', newColor);
 
     // add letter to state.currentWord
     let letter = event.target.innerText;
     this.setState({ currentWord: this.state.currentWord + letter })
   }
 
-  submitWord() {
+  submitWord(event) {
 
     //add word to state.data
     let word=this.state.currentWord;
@@ -112,8 +114,18 @@ class App extends React.Component {
     if (word.length >= 8) {
       this.setState({ total: this.state.total += 11 });
     }
-    //deselect(background color --> white)
-    this.setState({ color: '#FFF', currentWord: '' })
+    //clear selection
+      //query by class name
+      let buttons = document.querySelectorAll('.btn');
+      //loop through each element
+      buttons.forEach(el => {
+        //set data-color to white
+        console.log(el);
+        // el.setAttribute('data-color', '#FFF',);
+        el.setAttribute('style', 'background-color: rgb(255,255,255)')
+      })
+    //clear currentWord
+    this.setState({ currentWord: '' })
   }
 
   render () {
@@ -125,10 +137,9 @@ class App extends React.Component {
         <div id="board">
           <div className="row">
             {
-
               this.state.board1.map((letter, index) => {
               return (
-                <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+                <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
                 </div>
               )
             })}
@@ -136,7 +147,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board2.map((letter, index) => {
             return (
-              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -144,7 +155,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board3.map((letter, index) => {
             return (
-              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -152,7 +163,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board4.map((letter, index) => {
             return (
-              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -160,7 +171,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board5.map((letter, index) => {
             return (
-              <div className="btn" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
               </div>
             )
           })}
@@ -170,7 +181,7 @@ class App extends React.Component {
 
       {/* Current Word & Submit */}
          <div id="cw-submit">
-          <button type="button" id="submit" onClick={this.submitWord}> Submit Word </button>
+          <button type="button" id="submit" onClick={(e) => {this.submitWord(e)}}> Submit Word </button>
           <span><strong> Current Word: {this.state.currentWord} </strong></span>
         </div><br /><br />
 
