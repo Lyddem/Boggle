@@ -90,7 +90,7 @@ class App extends React.Component {
         currentWord.splice(index);
         this.setState({ currentWord: currentWord});
       }
-    //change background color (opposite of currentColor)
+    //change background color
     event.target.style.backgroundColor = newColor;
     event.target.setAttribute('data-color', newColor);
   }
