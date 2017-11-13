@@ -4,7 +4,6 @@ import ScoreBoard from './ScoreBoard.jsx';
 class App extends React.Component {
   constructor(props) {
     super(props)
-
     this.state = {
       total: 0,
       data: [],
@@ -20,7 +19,6 @@ class App extends React.Component {
       row4: ["dhlnor","dhlnor", "eiiitt","emottt","ensssu"],
       row5: ["fiprsy","gorrvw", "iprrry","nootuw","ooottu"],
     }
-
     this.clicked = this.clicked.bind(this);
     this.submitWord = this.submitWord.bind(this);
   }
@@ -124,8 +122,6 @@ class App extends React.Component {
       buttons.forEach(el => {
         el.setAttribute('style', 'background-color: rgb(255,255,255)');
         el.setAttribute('data-color', '#FFF');
-
-        console.log(el.target);
       })
     //clear currentWord
     this.setState({ currentWord: [] })
@@ -135,7 +131,6 @@ class App extends React.Component {
     return (
       <div id="container">
         <img id="title" src="http://qumani.com/qdserve/boggle-logo.png"/>
-
       {/* Board */}
         <div id="board">
           <div className="row">
@@ -179,18 +174,14 @@ class App extends React.Component {
             )
           })}
           </div>
-
         </div> &nbsp;
-
       {/* Current Word & Submit */}
          <div id="cw-submit">
           <button type="button" id="submit" onClick={(e) => {this.submitWord(e)}}> Submit Word </button>
           <span><strong> Current Word: {this.state.currentWord.join('')} </strong></span>
         </div><br /><br />
-
       {/* Scoreboard */}
         <ScoreBoard total={this.state.total} data={this.state.data} />
-
       </div>
     )
   }

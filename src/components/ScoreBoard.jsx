@@ -1,10 +1,8 @@
 import React from 'react';
 
-
 class ScoreBoard extends React.Component {
   constructor(props) {
     super(props)
-
     this.calculateScore = this.calculateScore.bind(this);
   }
 
@@ -30,8 +28,6 @@ class ScoreBoard extends React.Component {
   }
 
   render() {
-
-    // {console.log('total', this.props.total )}
     return (
       <div id="scoreboard">
         <table>
