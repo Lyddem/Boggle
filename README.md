@@ -1,7 +1,7 @@
 # Boggle
 React Boggle Game
 
-##Setup <br /><br />
+## Setup <br />
 
 > npm install <br />
 > npm run build <br />
