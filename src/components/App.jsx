@@ -88,7 +88,7 @@ class App extends React.Component {
         currentWord.splice(index);
         this.setState({ currentWord: currentWord});
       }
-    //change background color
+    //toggle background color
     event.target.style.backgroundColor = newColor;
     event.target.setAttribute('data-color', newColor);
   }
@@ -130,14 +130,14 @@ class App extends React.Component {
   render () {
     return (
       <div id="container">
-        <img id="title" src="http://qumani.com/qdserve/boggle-logo.png"/>
+        <img id="title" src="http://qumani.com/qdserve/boggle-logo.png"/> &nbsp;
       {/* Board */}
         <div id="board">
           <div className="row">
             {
               this.state.board1.map((letter, index) => {
               return (
-                <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
+                <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}>{letter}
                 </div>
               )
             })}
@@ -145,7 +145,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board2.map((letter, index) => {
             return (
-              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}>{letter}
               </div>
             )
           })}
@@ -153,7 +153,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board3.map((letter, index) => {
             return (
-              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}>{letter}
               </div>
             )
           })}
@@ -161,7 +161,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board4.map((letter, index) => {
             return (
-              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}>{letter}
               </div>
             )
           })}
@@ -169,7 +169,7 @@ class App extends React.Component {
           <div className="row">
           {this.state.board5.map((letter, index) => {
             return (
-              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}> {letter}
+              <div className="btn" data-color="#FFF" onClick={(e) => {this.clicked(e)}}>{letter}
               </div>
             )
           })}
