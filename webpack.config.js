@@ -9,15 +9,12 @@ module.exports = {
 
    output: {
       path : DIST,
-      filename: 'bundle.js',
+      publicPath: DIST,
+      filename: 'bundle.js'
    },
 
    module: {
       loaders: [
-         {
-         test: /\.(png|jpg)$/,
-         loader: 'url?limit=25000'
-         },
          {
             test: /\.jsx?$/,
             exclude: /node_modules/,
