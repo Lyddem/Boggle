@@ -7,7 +7,7 @@ class App extends React.Component {
 
     this.state = {
       total: 0,
-      currentWord: '',
+      currentWord: [],
       data: [],
       board1: [],
       board2: [],
@@ -75,18 +75,24 @@ class App extends React.Component {
     }
 
   clicked(event) {
-    //get current color
     let currentColor = event.target.attributes['data-color'].value;
-    //new color will be opposite of currentColor
     let newColor = currentColor === '#FFF' ? '#ACCEEC' : '#FFF';
-    //set bg color of div
-    event.target.style.backgroundColor = newColor;
-    //reset div's attribute to be the new color
-    event.target.setAttribute('data-color', newColor);
 
-    // add letter to state.currentWord
+    //add letter to state.currentWord
     let letter = event.target.innerText;
-    this.setState({ currentWord: this.state.currentWord + letter })
+    let added = this.state.currentWord.concat([letter]);
+    this.setState({ currentWord: added })
+
+    //if color is blue, remove letter
+      if(currentColor === "#ACCEEC"){
+        let currentWord = this.state.currentWord;
+        let index= currentWord.indexOf(letter);
+        currentWord.splice(index);
+        this.setState({ currentWord: currentWord});
+      }
+    //change background color (opposite of currentColor)
+    event.target.style.backgroundColor = newColor;
+    event.target.setAttribute('data-color', newColor);
   }
 
   submitWord(event) {
@@ -115,17 +121,13 @@ class App extends React.Component {
       this.setState({ total: this.state.total += 11 });
     }
     //clear selection
-      //query by class name
       let buttons = document.querySelectorAll('.btn');
-      //loop through each element
       buttons.forEach(el => {
-        //set data-color to white
-        console.log(el);
-        // el.setAttribute('data-color', '#FFF',);
         el.setAttribute('style', 'background-color: rgb(255,255,255)')
+        console.log(el.target);
       })
     //clear currentWord
-    this.setState({ currentWord: '' })
+    this.setState({ currentWord: [] })
   }
 
   render () {
@@ -182,7 +184,7 @@ class App extends React.Component {
       {/* Current Word & Submit */}
          <div id="cw-submit">
           <button type="button" id="submit" onClick={(e) => {this.submitWord(e)}}> Submit Word </button>
-          <span><strong> Current Word: {this.state.currentWord} </strong></span>
+          <span><strong> Current Word: {this.state.currentWord.join('')} </strong></span>
         </div><br /><br />
 
       {/* Scoreboard */}
